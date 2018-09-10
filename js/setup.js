@@ -42,11 +42,15 @@ var eyesColors = ['black',
   'green'
 ];
 
+// Функция по получению случайного индекса массива
+
 var getRandomData = function (arrey) {
   var randomIndex = Math.floor(Math.random() * arrey.length);
   var data = arrey[randomIndex];
   return data;
 };
+
+// Функция по созданию массива с объектами с случайными значениями свойств
 
 var getHeroesArrey = function (heroesQuantity) {
   var heroes = [];
@@ -60,14 +64,21 @@ var getHeroesArrey = function (heroesQuantity) {
   return heroes;
 };
 
+// Находим и сохраняем в переменную список похожих персонажей
 
 var similarListElement = userDialog.querySelector('.setup-similar-list');
+
+// Находим шаблон и элемент, который мы будем клонировать и сохраняем в переменную
 
 var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .content
     .querySelector('.setup-similar-item');
 
+// Запускаем функцию по созданию массива
+
 var wizards = getHeroesArrey(4);
+
+// Функция по созданию одного элемента по шаблону
 
 var renderWizard = function (wizard) {
   var wizardElement = similarWizardTemplate.cloneNode(true);
@@ -79,11 +90,20 @@ var renderWizard = function (wizard) {
   return wizardElement;
 };
 
+// Создаем фрагмент
+
 var fragment = document.createDocumentFragment();
+
+// Вставляем во фрагмент элементы
+
 for (var i = 0; i < wizards.length; i++) {
   fragment.appendChild(renderWizard(wizards[i]));
 }
 
+// Вставляем фрагмент
+
 similarListElement.appendChild(fragment);
+
+// Показываем блок на сайте
 
 userDialog.querySelector('.setup-similar').classList.remove('hidden');
