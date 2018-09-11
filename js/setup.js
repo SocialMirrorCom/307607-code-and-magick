@@ -7,7 +7,8 @@ userDialog.classList.remove('hidden');
 
 // Создаем массив, состоящий из 4 сгенерированных JS объектов
 
-var names = ['Иван',
+var names = [
+  'Иван',
   'Хуан Себастьян',
   'Мария',
   'Кристоф',
@@ -17,7 +18,8 @@ var names = ['Иван',
   'Вашингтон'
 ];
 
-var surnames = ['да Марья',
+var surnames = [
+  'да Марья',
   'Верон',
   'Мирабелла',
   'Вальц',
@@ -27,7 +29,8 @@ var surnames = ['да Марья',
   'Ирвинг'
 ];
 
-var coatColors = ['rgb(101, 137, 164)',
+var coatColors = [
+  'rgb(101, 137, 164)',
   'rgb(241, 43, 107)',
   'rgb(146, 100, 161)',
   'rgb(56, 159, 117)',
@@ -35,14 +38,15 @@ var coatColors = ['rgb(101, 137, 164)',
   'rgb(0, 0, 0)'
 ];
 
-var eyesColors = ['black',
+var eyesColors = [
+  'black',
   'red',
   'blue',
   'yellow',
   'green'
 ];
 
-// Функция по получению случайного индекса массива
+// Функция по получению случайного элемента массива
 
 var getRandomData = function (arrey) {
   var randomIndex = Math.floor(Math.random() * arrey.length);
