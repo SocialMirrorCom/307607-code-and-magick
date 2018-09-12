@@ -132,7 +132,7 @@ var setupUserName = setup.querySelector('.setup-user-name');
 
 // Функция обработчик по закрытию диалогового окна нажатием на клавишу esc
 
-var onPopupEscPress = function(evt) {
+var onPopupEscPress = function (evt) {
   if (evt.keyCode === ESC_KEYCODE) {
     closePopup();
   }
@@ -140,27 +140,27 @@ var onPopupEscPress = function(evt) {
 
 // Функция открытия диалогового окна
 
-var openPopup = function() {
+var openPopup = function () {
   setup.classList.remove('hidden');
   document.addEventListener('keydown', onPopupEscPress);
 };
 
 // Функция закрытия диалогового окна
 
-var closePopup = function() {
+var closePopup = function () {
   setup.classList.add('hidden');
   document.removeEventListener('keydown', onPopupEscPress);
 };
 
 // Обработчик события клик для открытия диалогового окна
 
-setupOpen.addEventListener('click', function() {
+setupOpen.addEventListener('click', function () {
   openPopup();
 });
 
 // Обработчик события для открытия диалогового окна с помощью клавиши enter
 
-setupOpen.addEventListener('keydown', function(evt) {
+setupOpen.addEventListener('keydown', function (evt) {
   if (evt.keyCode === ENTER_KEYCODE) {
     openPopup();
   }
@@ -170,26 +170,26 @@ setupOpen.addEventListener('keydown', function(evt) {
 
 var getElementFocused = function (element) {
   var inputFocused = false;
-  element.addEventListener("focus", function() {
-      inputFocused = true;
+  element.addEventListener('focus', function () {
+    inputFocused = true;
   });
-  element.addEventListener("blur", function() {
-      inputFocused = false;
+  element.addEventListener('blur', function () {
+    inputFocused = false;
   });
   return inputFocused;
 };
 
 // Закрываем диалоговое окно по клику на крестик, если Input в фокусе, диалоговое окно не закроется
 
-setupClose.addEventListener('click', function() {
+setupClose.addEventListener('click', function () {
   if (getElementFocused(setupUserName)) {
-  closePopup();
+    closePopup();
   }
 });
 
 // Закрываем диалоговое окно клавишей Enter, когда крестик находится в фокусе
 
-setupClose.addEventListener('keydown', function(evt) {
+setupClose.addEventListener('keydown', function (evt) {
   if (evt.keyCode === ENTER_KEYCODE) {
     closePopup();
   }
@@ -197,7 +197,7 @@ setupClose.addEventListener('keydown', function(evt) {
 
 // Кастомизируем события в случае некорректно введенных данных
 
-setupUserName.addEventListener('invalid', function (evt) {
+setupUserName.addEventListener('invalid', function () {
   if (setupUserName.validity.tooShort) {
     setupUserName.setCustomValidity('Имя должно состоять минимум из 2-х символов');
   } else if (setupUserName.validity.tooLong) {
