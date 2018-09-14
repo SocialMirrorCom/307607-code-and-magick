@@ -130,10 +130,11 @@ var setupClose = setup.querySelector('.setup-close');
 var setupUserName = setup.querySelector('.setup-user-name');
 
 
-// Функция обработчик по закрытию диалогового окна нажатием на клавишу esc
+// Функция обработчик по закрытию диалогового окна нажатием на клавишу esc, если Input в фокусе, диалоговое окно не закроется
 
 var onPopupEscPress = function (evt) {
-  if (evt.keyCode === ESC_KEYCODE) {
+  var element = evt.target;
+  if (evt.keyCode === ESC_KEYCODE && element !== setupUserName) {
     closePopup();
   }
 };
@@ -154,9 +155,7 @@ var closePopup = function () {
 
 // Обработчик события клик для открытия диалогового окна
 
-setupOpen.addEventListener('click', function () {
-  openPopup();
-});
+setupOpen.addEventListener('click', openPopup);
 
 // Обработчик события для открытия диалогового окна с помощью клавиши enter
 
@@ -166,26 +165,9 @@ setupOpen.addEventListener('keydown', function (evt) {
   }
 });
 
-// Проверяем в фокусе ли элемент или нет с помощью функции
+// Закрываем диалоговое окно по клику на крестик
 
-var getElementFocused = function (element) {
-  var inputFocused = false;
-  element.addEventListener('focus', function () {
-    inputFocused = true;
-  });
-  element.addEventListener('blur', function () {
-    inputFocused = false;
-  });
-  return inputFocused;
-};
-
-// Закрываем диалоговое окно по клику на крестик, если Input в фокусе, диалоговое окно не закроется
-
-setupClose.addEventListener('click', function () {
-  if (getElementFocused(setupUserName)) {
-    closePopup();
-  }
-});
+setupClose.addEventListener('click', closePopup);
 
 // Закрываем диалоговое окно клавишей Enter, когда крестик находится в фокусе
 
