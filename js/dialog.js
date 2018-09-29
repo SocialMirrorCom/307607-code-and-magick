@@ -114,15 +114,6 @@
       x: evt.clientX,
       y: evt.clientY
     };
-    console.log(startCoords);
-
-
-    var startSetupPosition  = {
-    top: evt.currentTarget.offsetTop,
-    left: evt.currentTarget.offsetLeft,
-    };
-
-    console.log(startSetupPosition);
 
     // Вводим переменную для фиксации есть ли сдвиг при клике, (так как просто клик запускает загрузку аватарки)
 
