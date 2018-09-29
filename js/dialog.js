@@ -18,6 +18,8 @@
 
   var openPopup = function () {
     setup.classList.remove('hidden');
+    setup.style.top = 80 + 'px';
+    setup.style.left = 628 + 'px';
     document.addEventListener('keydown', onPopupEscPress);
   };
 
@@ -96,8 +98,7 @@
 
   // Перетаскиваем диалоговое окно при нажатии на иконку пользователя
 
-  var setupDialogElement = document.querySelector('.setup');
-  var dialogHandler = setupDialogElement.querySelector('.upload');
+  var dialogHandler = setup.querySelector('.upload');
 
   // Пишем обработчик события нажатия на клавишу мышки
 
@@ -113,6 +114,15 @@
       x: evt.clientX,
       y: evt.clientY
     };
+    console.log(startCoords);
+
+
+    var startSetupPosition  = {
+    top: evt.currentTarget.offsetTop,
+    left: evt.currentTarget.offsetLeft,
+    };
+
+    console.log(startSetupPosition);
 
     // Вводим переменную для фиксации есть ли сдвиг при клике, (так как просто клик запускает загрузку аватарки)
 
@@ -135,12 +145,12 @@
         y: moveEvt.clientY
       };
 
-      setupDialogElement.style.top = (setupDialogElement.offsetTop - shift.y) + 'px';
-      setupDialogElement.style.left = (setupDialogElement.offsetLeft - shift.x) + 'px';
+      setup.style.top = (setup.offsetTop - shift.y) + 'px';
+      setup.style.left = (setup.offsetLeft - shift.x) + 'px';
 
     };
 
-    // Функция обработчик события когла пользователь отпускает клавишу мышки
+    // Функция обработчик события когда пользователь отпускает клавишу мышки
 
     var onMouseUp = function (upEvt) {
       upEvt.preventDefault();
@@ -161,6 +171,7 @@
 
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
+
   });
 
   // Функция выбора и покупки артефактов
