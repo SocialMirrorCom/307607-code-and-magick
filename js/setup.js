@@ -18,7 +18,7 @@
 
   // Запускаем функцию по созданию массива
 
-  var wizards = window.getWizardArrey(4);
+  // var wizards = window.getWizardArrey(4);
 
   // Функция по созданию одного элемента по шаблону
 
@@ -26,27 +26,48 @@
     var wizardElement = similarWizardTemplate.cloneNode(true);
 
     wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
-    wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
+    wizardElement.querySelector('.wizard-coat').style.fill = wizard.colorCoat;
     wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
 
     return wizardElement;
   };
 
-  // Создаем фрагмент
+  var successHandler = function (wizards) {
+    var randomIndex = [];
+    for (var i = 0; i < 4; i++) {
+      randomIndex.push(Math.floor(Math.random() * wizards.length));
+    }
 
-  var fragment = document.createDocumentFragment();
+    var fragment = document.createDocumentFragment();
 
-  // Вставляем во фрагмент элементы
+    for (var j = 0; j < randomIndex.length; j++) {
 
-  for (var i = 0; i < wizards.length; i++) {
-    fragment.appendChild(renderWizard(wizards[i]));
-  }
+      fragment.appendChild(renderWizard(wizards[randomIndex[i]]));
+    }
+    similarListElement.appendChild(fragment);
 
-  // Вставляем фрагмент
+    setup.querySelector('.setup-similar').classList.remove('hidden');
+  };
 
-  similarListElement.appendChild(fragment);
+  var errorHandler = function (errorMessage) {
+    var node = document.createElement('div');
+    node.style = 'z-index: 100; margin: 0 auto; text-align: center; background-color: red;';
+    node.style.position = 'absolute';
+    node.style.left = 0;
+    node.style.right = 0;
+    node.style.fontSize = '30px';
 
-  // Показываем блок на сайте
+    node.textContent = errorMessage;
+    document.body.insertAdjacentElement('afterbegin', node);
+  };
 
-  setup.querySelector('.setup-similar').classList.remove('hidden');
+  window.load(successHandler, errorHandler);
+
+  var form = setup.querySelector('.setup-wizard-form');
+  form.addEventListener('submit', function (evt) {
+    window.save(new FormData(form), function (response) {
+      setup.classList.add('hidden');
+    });
+    evt.preventDefault();
+  });
 })();
